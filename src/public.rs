@@ -514,7 +514,7 @@ pub fn get_keybd_key(c: char) -> Option<KeybdKey> {
 pub struct KeySequence<'a>(pub &'a str);
 
 impl KeySequence<'_> {
-    pub fn send(&self, delay: u32) {
+    pub fn send(&self, delay: u64) {
         for c in self.0.chars() {
             let mut uppercase = false;
 
