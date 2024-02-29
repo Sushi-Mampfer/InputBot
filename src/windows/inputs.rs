@@ -124,6 +124,9 @@ impl From<KeybdKey> for u64 {
             LBracketKey => 0xDB,
             RBracketKey => 0xDD,
             EqualKey => 0xBB,
+            AEKey => 0xDE,
+            OEKey => 0xC0,
+            UEKey => 0xBA,
             OtherKey(code) => code,
         }
     }
@@ -250,6 +253,10 @@ impl From<u64> for KeybdKey {
             0xDB => LBracketKey,
             0xDD => RBracketKey,
             0xBB => EqualKey,
+            0xDE => AEKey,
+            0xDE => AEKey,
+            0xC0 => OEKey,
+            0xBA => UEKey,
             _ => OtherKey(code),
         }
     }
