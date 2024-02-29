@@ -217,6 +217,10 @@ pub enum KeybdKey {
     RBracketKey,
     EqualKey,
 
+    OEKey,
+    AEKey,
+    UEKey,
+
     #[strum(disabled)]
     OtherKey(u64),
 }
@@ -697,6 +701,9 @@ pub fn from_keybd_key(k: KeybdKey) -> Option<char> {
         KeybdKey::LBracketKey => Some('['),
         KeybdKey::RBracketKey => Some(']'),
         KeybdKey::EqualKey => Some('='),
+        KeybdKey::OEKey => Some ('ö'),
+        KeybdKey::AEKey => Some ('ä'),
+        KeybdKey::UEKey => Some ('ü'),
         _ => None,
     }
 }
@@ -751,6 +758,9 @@ pub fn get_keybd_key(c: char) -> Option<KeybdKey> {
         '=' | '+' => Some(KeybdKey::EqualKey),
         '\\' | '|' => Some(KeybdKey::BackslashKey),
         '\'' | '"' => Some(KeybdKey::QuoteKey),
+        'Ö' | 'ö' => Some(KeybdKey::OEKey),
+        'Ä' | 'ä' => Some(KeybdKey::AEKey),
+        'Ü' | 'ü' => Some(KeybdKey::ÜEKey),
         _ => None,
     }
 }
@@ -766,7 +776,7 @@ impl KeySequence<'_> {
                 if c.is_uppercase()
                     || [
                         '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|',
-                        ':', '"', '<', '>', '?', '~', '\'',
+                        ':', '"', '<', '>', '?', '~', '\'', 'Ö', 'Ä', 'Ü',
                     ]
                     .contains(&c)
                 {
